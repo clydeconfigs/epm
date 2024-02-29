@@ -12,6 +12,6 @@ test -n $password || begin
     set password (openssl rand 18 | base64)
 end
 
-set encrypted_password (echo "$password" | age -r $(cat key | grep "public key" | awk '{ print $4 }') | base64 -w0)
+set encrypted_password (echo "$password" | age -r $(cat "$epm"key | grep "public key" | awk '{ print $4 }') | base64 -w0)
 
-echo $title,$username,$encrypted_password >> store
+echo $title,$username,$encrypted_password >> "$epm"store

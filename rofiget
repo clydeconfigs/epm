@@ -1,2 +1,2 @@
 #!/bin/bash
-./get $(./list | rofi -dmenu | cut -f 1 | sed s/" "//g)
+"$epm"get $("$epm"list | rofi -dmenu | cut -f 1 | sed s/" "//g)

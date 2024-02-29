@@ -1,14 +1,24 @@
 #!/bin/bash
 
 test "$1" == "overwrite" && {
-	mv key key_backup
-	age-keygen > key
+	mv "$epm"key "$epm"key_backup
+	age-keygen > "$epm"key
 	exit 0
 }
 
-test -e key && { 
-	echo "key already exists. not overwriting it"
+test -e "$epm"key && { 
+	echo "
+IMPORTANT: you tried to overwrite the current key, this would make all your
+stored passwords useless if you don't have your old key
+
+we will NOT re-encrypt the passwords for you, because that usually leads to
+catastrophes... sorry!
+
+if you really know what you are doing, use \`genkey overwrite\`, and delete the
+old passwords
+	"
+	
 	exit 1
 }
 
-age-keygen > key
+age-keygen > "$epm"key
