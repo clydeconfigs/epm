@@ -1,0 +1,17 @@
+#!/bin/fish
+
+echo "insert title for this entry (example: gmail)"
+read title
+echo "insert username for this entry (example: johnwick@gmail.com)"
+read username
+echo "insert password for this entry (example: Vie5keifsohmieM6)"
+echo "(leave empty to auto-generate!)"
+read -s password
+test -n $password || begin 
+    echo "generating random password..."
+    set password (openssl rand 18 | base64)
+end
+
+set encrypted_password (echo "$password" | age -r $(cat key | grep "public key" | awk '{ print $4 }') | base64 -w0)
+
+echo $title,$username,$encrypted_password >> store

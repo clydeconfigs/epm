@@ -1,0 +1,14 @@
+#!/bin/bash
+
+test "$1" == "overwrite" && {
+	mv key key_backup
+	age-keygen > key
+	exit 0
+}
+
+test -e key && { 
+	echo "key already exists. not overwriting it"
+	exit 1
+}
+
+age-keygen > key
