@@ -9,7 +9,17 @@ echo "(leave empty to auto-generate!)"
 read -s password
 test -n $password || begin 
     echo "generating random password..."
-    set password (openssl rand 18 | base64)
+    set password "%Aa1"(pwgen -syn1 19)
+                # ^ This `%Aa1` is in case a sign up requires characters,
+                # and pwgen does not generate enough of them. It does not
+                # increase security AT ALL, and is not expected to
+
+                # Q: why 19 (nineteen)?
+                # trashy sites like TikTok require, for whatever reason,
+                # that the password is lower than 19 characters in length
+
+                # this random password is math.log2(74**19) bits strong,
+                # which equals 117.98, more than enough for a lifetime
 end
 
 set encrypted_password (echo "$password" | age -r $(cat "$epm"key | grep "public key" | awk '{ print $4 }') | base64 -w0)
