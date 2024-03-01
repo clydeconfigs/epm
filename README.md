@@ -34,3 +34,7 @@ bindsym $mod+p exec source $HOME/epm/config && $HOME/epm/rofiget
 ```
 
 the `source` command is important, since it will enable the configuration. otherwise it will not work
+
+*rofi in use:*
+
+![](https://i.imgur.com/AhdPN9t.png)
