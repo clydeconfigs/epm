@@ -1,3 +1,5 @@
+## introduction
+
 **easy password manager** *(epm)* is an easy tool to manage your passwords
 
 it is inspired by the best parts of [pass](https://wiki.archlinux.org/title/Pass), but keeping it even more minimal, so that the user cannot ever shoot himself in the foot
@@ -18,3 +20,17 @@ epm
 ├─ get -> CLI tool to get a password in *n*th line  
 ├─ list -> CLI tool to get a list of your passwords  
 └─ store -> where your encrypted passwords are stored in a .csv file (names and titles are not encrypted)  
+
+## usage
+
+if you want to use it the modern way, instead of having to open a terminal each time you login to something, you can use rofiget, which will enumerate all passwords and copy or type them
+
+this script is located in epm/rofiget, and you have to bind it to your OS bindings
+
+for example, in i3 you would do:
+
+```
+bindsym $mod+p exec source $HOME/epm/config && $HOME/epm/rofiget
+```
+
+the `source` command is important, since it will enable the configuration. otherwise it will not work
