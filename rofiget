@@ -1,2 +1,5 @@
 #!/bin/bash
-"$epm"get $("$epm"list | rofi -dmenu | cut -f 1 | sed s/" "//g)
+"$epm"get $("$epm"list | rofi -dmenu | cut -f 1 | sed s/" "//g) | xclip -sel c && { 
+	sleep 10
+	echo "" | xclip -sel c
+}

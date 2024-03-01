@@ -9,12 +9,12 @@ echo "(leave empty to auto-generate!)"
 read -s password
 test -n $password || begin 
     echo "generating random password..."
-    set password "%Aa1"(pwgen -syn1 19)
+    set password "%Aa1"(pwgen -syn1 $epm_password_length)
                 # ^ This `%Aa1` is in case a sign up requires characters,
                 # and pwgen does not generate enough of them. It does not
                 # increase security AT ALL, and is not expected to
 
-                # Q: why 19 (nineteen)?
+                # Q: why $epm_password_length (nineteen)?
                 # trashy sites like TikTok require, for whatever reason,
                 # that the password is lower than 19 characters in length
 

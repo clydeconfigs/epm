@@ -1,0 +1,2 @@
+export epm="$HOME/epm/"
+export epm_password_length="19"
